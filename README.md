@@ -53,9 +53,10 @@ Run `grunt` for building and `grunt serve` for preview.
 The output for the build commands will be moved in the RoR public directory.
 
 ##### Note:
-    When running grunt serve, make sure that the server for middleware is also running as the frontend creates a proxy that points to the middleware for the json data.
+    When running grunt serve, make sure that the server for middleware is also running as 
+    the frontend creates a proxy that points to the middleware for the json data.
     
-    To rails server setting is under the grunt.initConfig of "connect" property.
+    The rails server setting is under the grunt.initConfig of "connect" property.
     
     server: {
         proxies: [
