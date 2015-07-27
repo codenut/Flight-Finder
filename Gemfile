@@ -53,6 +53,6 @@ group :development, :test do
 end
 
 group :production do
-  gem install 'pg'
+  gem 'pg'
 end
 
