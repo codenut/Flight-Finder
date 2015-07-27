@@ -1,46 +1,42 @@
 'use strict';
 
 angular.module('flightFinder').factory('CitiesService', function($http, $q){
-    var CitiesService = new Object();
+    return {
+        getCities: function() {
+            var deferred = $q.defer();
+            $http.get("/routes/cities").
+                success(function(data) {
+                    deferred.resolve(data);
+                });
+            return deferred.promise;
+        },
 
-    CitiesService.getCities = function() {
-        var deferred = $q.defer();
-        $http.get("/routes/cities").
-            success(function(data) {
-                deferred.resolve(data);
-            });
-        return deferred.promise;
-    }
-
-    CitiesService.getCandidates = function(cities, city) {
-        if(city.length >= 3) {
-            return cities.filter(function(c) {
-                return c.toLowerCase().startsWith(city.toLowerCase());
-            });
-        } else {
-            return [];
+        getCandidates: function(cities, city) {
+            if(city && city.length >= 3) {
+                return cities.filter(function(cand) {
+                    return cand.toLowerCase().startsWith(city.toLowerCase());
+                });
+            } else {
+                return [];
+            }
         }
-    }
-
-    return CitiesService;
+    };
 });
 
 angular.module('flightFinder').factory('RoutesService', function($http, $q){
-    var RoutesService = new Object();
-
-    RoutesService.find = function(route) {
-        var deferred = $q.defer();
-        $http.post("/routes/find", route).
-            success(function(data) {
-                deferred.resolve(data);
-            }).
-            error(function() {
-                deferred.resolve({ "data": {"error": "Oops! Something went wrong."} })
-            });
-        return deferred.promise;
-    }
-
-    return RoutesService;
+    return {
+        find: function(route) {
+            var deferred = $q.defer();
+            $http.post("/routes/find", route).
+                success(function(data) {
+                    deferred.resolve(data);
+                }).
+                error(function() {
+                    deferred.resolve({ "data": {"error": "Oops! Something went wrong."} });
+                });
+            return deferred.promise;
+        }
+    };
 });
 
 /**
@@ -51,18 +47,18 @@ angular.module('flightFinder').factory('RoutesService', function($http, $q){
  * Controller of the flightFinder
  */
 angular.module('flightFinder').controller('FlightCtrl', function ($scope, $rootScope, $http, CitiesService, RoutesService) {
-    $scope.route = { "from": "", "to": "" }
+    $scope.route = { "from": "", "to": "" };
     $scope.candidateCities = [];
     var cities = [];
 
     CitiesService.getCities().then(function(data) {
         $scope.citiesRetrieved = true;
-        cities = data['cities'];
+        cities = data.cities;
     });
 
     $scope.getCandidateCity = function(city) {
         $scope.candidateCities = CitiesService.getCandidates(cities, city); 
-    }
+    };
 
     $scope.findFlights = function() {
         $scope.airlines = [];
@@ -77,5 +73,5 @@ angular.module('flightFinder').controller('FlightCtrl', function ($scope, $rootS
             }
             $scope.onRequest = false;
         });
-    }
+    };
 });

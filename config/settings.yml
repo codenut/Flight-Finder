@@ -1,3 +1,2 @@
 api:
-  #url: http://localhost:8080/ 
-  url: https://flightapi.herokuapp.com/
+  url: http://localhost:8080/ 
