@@ -1,6 +1,6 @@
 # Flight Finder
 
-This application built with [Ruby on Rails](http://rubyonrails.org/) and [yo angular generator](https://github.com/yeoman/generator-angular). The middleware is using the API endpoint of the [FlightAPI](https://github.com/codenut/flightapi) project.
+This application is built with [Ruby on Rails](http://rubyonrails.org/) and [yo angular generator](https://github.com/yeoman/generator-angular). The middleware is using the API endpoint of the [FlightAPI](https://github.com/codenut/flightapi) project.
 
 The files for the frontend is under the assets directory.
 
@@ -52,8 +52,21 @@ Run `grunt` for building and `grunt serve` for preview.
 
 The output for the build commands will be moved in the RoR public directory.
 
-##### 
-
+##### Note:
+    When running grunt serve, make sure that the server for middleware is also running as the frontend creates a proxy that points to the middleware for the json data.
+    
+    To rails server setting is under the grunt.initConfig of "connect" property.
+    
+    server: {
+        proxies: [
+          {
+              context: '/routes',
+              host: 'localhost',
+              port: '3000',
+              changeOrigin: true
+          }
+        ]
+      }
 
 ## Testing
 
