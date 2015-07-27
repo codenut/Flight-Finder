@@ -33,20 +33,6 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: appConfig,
 
-    //concat config
-    concat: {
-      generated: {
-        files: [
-          {
-            dest: '.tmp/concat/scripts/app.js',
-            src: [
-              'assets/scripts/**/*.js',
-            ]
-          }
-        ]
-      }
-    },
-
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
