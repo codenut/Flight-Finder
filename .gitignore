@@ -23,6 +23,5 @@
 /bower_components
 .gitattributes
 .editorconfig
-.jshintrc
 .yo-rc.json
 npm-debug.log
