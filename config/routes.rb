@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :routes, only: [:find, :cities, :index] 
+  resources :routes, only: [:find, :index] 
+  resources :cities, only: [:index]
 
   post 'routes/find' => 'routes#find'
-  get 'routes/cities' => 'routes#cities'
   root 'routes#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

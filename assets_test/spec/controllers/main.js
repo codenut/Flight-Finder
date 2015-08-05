@@ -36,7 +36,7 @@ describe('Controller: FlightCtrl', function () {
   });
 
   it('should return a list of cities that start with the searchtext', function() {
-    httpBackend.when('GET', '/routes/cities').respond(function() {
+    httpBackend.when('GET', '/cities').respond(function() {
        return [200, {"cities": ["Manila", "Tokyo", "Singapore", "Dubai", "Los Angeles", "San Francisco", "San Diego"]}, {}];
     });
 
@@ -51,7 +51,7 @@ describe('Controller: FlightCtrl', function () {
 
 
   it('should return the list of airlines for a route', function() {
-    httpBackend.when('GET', '/routes/cities').respond(function() {
+    httpBackend.when('GET', '/cities').respond(function() {
        return [200, {"cities": ["Manila", "Tokyo", "Singapore", "Dubai", "Los Angeles", "San Francisco", "San Diego"]}, {}];
     });
 

@@ -4,7 +4,7 @@ angular.module('flightFinder').factory('CitiesService', function($http, $q){
     return {
         getCities: function() {
             var deferred = $q.defer();
-            $http.get("/routes/cities").
+            $http.get("/cities").
                 success(function(data) {
                     deferred.resolve(data);
                 });
